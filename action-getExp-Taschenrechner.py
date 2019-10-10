@@ -17,7 +17,7 @@ def action_wrapper(hermes, intent_message):
         result_sentence = "{0} hoch {1} ergibt {2} komma {3} .".format(first, second, calc_part1, calc_part2)
     else:
         result_sentence = "{} hoch {} ergibt {} .".format(first, second, calc)
-    
+    print(result_sentence)
     current_session_id = intent_message.session_id
     hermes.publish_end_session(current_session_id, result_sentence)
 
