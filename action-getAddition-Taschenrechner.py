@@ -3,6 +3,12 @@
 
 from hermes_python.hermes import Hermes
 
+# TODO: Only one action file
+# TODO: Dezimalbrüche
+# TODO: Logarithmus
+# TODO: Potenzen
+# TODO: make app look at MQTT Config
+
 
 def action_wrapper(hermes, intent_message):
     first = int(intent_message.slots.firstTerm.first().value)
