@@ -77,21 +77,14 @@ def get_terms(intent_message):
 
 
 def num_to_words(num):
-    if isinstance(num, int):
-        words = str(num)
-    elif isinstance(num, float):
+    if isinstance(num, float):
         if num % 1 == 0:
             words = str(int(num))
         else:
             pre, post = str(num).split('.')
             words = f"{pre} komma {post}"
     else:
-        num = str(num)
-        if '.' in num:
-            pre, post = num.split('.')
-            words = f"{pre} komma {post}"
-        else:
-            words = num
+        words = str(num)
     return words
 
 
