@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 from hermes_python.hermes import Hermes
 import toml
@@ -19,19 +18,25 @@ def add_prefix(intent_name):
 
 def msg_addition(hermes, intent_message):
     first, second = get_terms(intent_message)
-    sentence = f"{first} plus {second} ergibt {num_to_words(first + second)} ."
+    sentence = "{} plus {} ergibt {} .".format(
+        first, second, num_to_words(first + second)
+    )
     end_session(hermes, intent_message, sentence)
 
 
 def msg_subtraktion(hermes, intent_message):
     first, second = get_terms(intent_message)
-    sentence = f"{first} minus {second} ergibt {num_to_words(first - second)} ."
+    sentence = "{} minus {} ergibt {} .".format(
+        first, second, num_to_words(first - second)
+    )
     end_session(hermes, intent_message, sentence)
 
 
 def msg_multiplikation(hermes, intent_message):
     first, second = get_terms(intent_message)
-    sentence = f"{first} mal {second} ergibt {num_to_words(first * second)} ."
+    sentence = "{} mal {} ergibt {} .".format(
+        first, second, num_to_words(first * second)
+    )
     end_session(hermes, intent_message, sentence)
 
 
@@ -40,13 +45,17 @@ def msg_division(hermes, intent_message):
     if second == 0:
         end_session(hermes, intent_message, "Ich kann leider nicht durch Null teilen.")
         return
-    sentence = f"{first} durch {second} ergibt {num_to_words(first / second)} ."
+    sentence = "{} durch {} ergibt {} .".format(
+        first, second, num_to_words(first / second)
+    )
     end_session(hermes, intent_message, sentence)
 
 
 def msg_wurzel(hermes, intent_message):  # TODO: Only english words
     first = int(intent_message.slots.firstTerm.first().value)
-    sentence = f"Die Wurzel aus {first} ist {num_to_words(math.sqrt(first))} ."
+    sentence = "Die Wurzel aus {} ist {} .".format(
+        first, num_to_words(math.sqrt(first))
+    )
     end_session(hermes, intent_message, sentence)
 
 
@@ -82,7 +91,7 @@ def num_to_words(num):
             words = str(int(num))
         else:
             pre, post = str(num).split('.')
-            words = f"{pre} komma {post}"
+            words = "{} komma {}".format(pre, post)
     else:
         words = str(num)
     return words
